@@ -25,9 +25,9 @@ public class FilmeController : ControllerBase
     }
     
     [HttpGet("{id}")]
-    public IActionResult ObterPorId(Guid id)
+    public IActionResult ObterPorId(int id)
     {
-        var filme = filmes.Find(filme =>  filme.Id == Id);
+        var filme = filmes.FirstOrDefault(filme =>  filme.Id == id);
         return Ok(filme);
     }
 }
