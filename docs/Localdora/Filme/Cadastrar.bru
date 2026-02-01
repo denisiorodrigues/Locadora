@@ -1,0 +1,25 @@
+meta {
+  name: Cadastrar
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseURL}}/filmes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "Titulo" : "Planeta dos Macacos",
+      "Genero" : "Ação",
+      "Duracao" : 112,
+      "Diretor" :  "Franklin J. Schaffner"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

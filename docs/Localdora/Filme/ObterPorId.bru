@@ -1,0 +1,15 @@
+meta {
+  name: ObterPorId
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseURL}}/filmes/3
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
