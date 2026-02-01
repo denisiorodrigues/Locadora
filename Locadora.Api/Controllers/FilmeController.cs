@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Locadora.Api.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Locadora.Api.Controllers;
 
@@ -6,9 +7,27 @@ namespace Locadora.Api.Controllers;
 [Route("api/filmes")]
 public class FilmeController : ControllerBase
 {
+    private static List<Filme> filmes = new List<Filme>();
+    private static int Id = 1;
+    
     [HttpPost()]
-    public IActionResult Cadastrar()
-    {
+    public IActionResult Cadastrar([FromBody] Filme filme)
+    {   
+        filme.Id = Id++;
+        filmes.Add(filme);
         return Ok();
+    }
+    
+    [HttpGet]
+    public IActionResult ObterFilmes()
+    {
+        return Ok(filmes);
+    }
+    
+    [HttpGet("{id}")]
+    public IActionResult ObterPorId(Guid id)
+    {
+        var filme = filmes.Find(filme =>  filme.Id == Id);
+        return Ok(filme);
     }
 }
