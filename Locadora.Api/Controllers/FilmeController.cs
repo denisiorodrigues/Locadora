@@ -19,9 +19,9 @@ public class FilmeController : ControllerBase
     }
     
     [HttpGet]
-    public IActionResult ObterFilmes()
+    public IActionResult ObterFilmes([FromQuery] int pular = 0, [FromQuery] int quantidade = 10)
     {
-        return Ok(filmes);
+        return Ok(filmes.Skip(pular).Take(quantidade));
     }
     
     [HttpGet("{id}")]
