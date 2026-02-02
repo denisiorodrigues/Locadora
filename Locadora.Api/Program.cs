@@ -10,9 +10,8 @@ Console.WriteLine($"Connection String: {builder.Configuration.GetConnectionStrin
 
 builder.Services.AddControllers();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 // builder.Services.AddDbContext<LocadoraContext>(options => 
-//     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+//     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
 builder.Services.AddDbContext<LocadoraContext>(options =>
     options.UseMySql(
