@@ -3,13 +3,23 @@ using Locadora.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Adicione esta linha para debug (remova depois)
+Console.WriteLine($"Connection String: {builder.Configuration.GetConnectionString("DefaultConnection")}");
+
 // Add services to the container.
 
 builder.Services.AddControllers();
 
-var connectionString = builder.Configuration.GetConnectionString("LocadoraConnection");
-builder.Services.AddDbContext<LocadoraContext>(options => 
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// builder.Services.AddDbContext<LocadoraContext>(options => 
+//     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddDbContext<LocadoraContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8, 0, 44)) // Ajuste para sua versão
+    ));
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
