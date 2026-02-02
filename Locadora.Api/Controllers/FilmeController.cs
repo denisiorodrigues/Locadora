@@ -15,7 +15,7 @@ public class FilmeController : ControllerBase
     {   
         filme.Id = Id++;
         filmes.Add(filme);
-        return Ok();
+        return CreatedAtAction(nameof(ObterPorId), new { id = filme.Id }, filme);
     }
     
     [HttpGet]
@@ -28,6 +28,7 @@ public class FilmeController : ControllerBase
     public IActionResult ObterPorId(int id)
     {
         var filme = filmes.FirstOrDefault(filme =>  filme.Id == id);
+        if(filme is null) return  NotFound();
         return Ok(filme);
     }
 }
