@@ -4,7 +4,10 @@ using Locadora.Api.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Adicione esta linha para debug (remova depois)
-Console.WriteLine($"Connection String: {builder.Configuration.GetConnectionString("DefaultConnection")}");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if(string.IsNullOrEmpty(connectionString))
+    throw new ArgumentNullException(nameof(connectionString) + " String de conexão não encontrada --- " );
+Console.WriteLine($"Connection String: [{connectionString}]");
 
 // Add services to the container.
 
