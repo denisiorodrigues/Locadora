@@ -1,4 +1,6 @@
-﻿using Locadora.Api.Data;
+﻿using AutoMapper;
+using Locadora.Api.Data;
+using Locadora.Api.Data.Dto;
 using Locadora.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,15 +11,18 @@ namespace Locadora.Api.Controllers;
 public class FilmeController : ControllerBase
 {
     private LocadoraContext _context;
+    private IMapper _mapper;
 
-    public FilmeController(LocadoraContext context)
+    public FilmeController(LocadoraContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     [HttpPost()]
-    public IActionResult Cadastrar([FromBody] Filme filme)
+    public IActionResult Cadastrar([FromBody] CreateFilmeDto filmeDto)
     {   
+        var filme =  _mapper.Map<Filme>(filmeDto);
         _context.Filmes.Add(filme);
         _context.SaveChanges();
         return CreatedAtAction(nameof(ObterPorId), new { id = filme.Id }, filme);

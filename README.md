@@ -15,6 +15,14 @@ Locadora/
 └── README.md
 ```
 
+## Bibliotecas
+- .NET 8
+- Swashbuckle (swagger)
+- Entityframework
+- Pomelo
+- Automapper
+
+
 ## Banco de dados
 
 Criando um container para base de dados MySql com o volume.
