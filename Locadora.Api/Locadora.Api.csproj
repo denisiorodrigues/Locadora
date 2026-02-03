@@ -24,4 +24,9 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20260202193942_CriarTabelaFilme.cs" />
+    <Compile Remove="Migrations\20260202193942_CriarTabelaFilme.Designer.cs" />
+  </ItemGroup>
+
 </Project>
