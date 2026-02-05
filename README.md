@@ -11,6 +11,7 @@ Locadora/
 │ ├── Data/ # Banco de dadoos
 │ ├── Migrations/ # Migrações do Entity
 │ ├── Models/ # Entidades
+│ ├── Profile/ # Arquivos de configuração do Automapper
 │ └── Program.cs # Ponto de entrada
 └── README.md
 ```
