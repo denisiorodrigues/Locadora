@@ -32,7 +32,9 @@ public class FilmeController : ControllerBase
     [HttpGet]
     public IActionResult ObterFilmes([FromQuery] int pular = 0, [FromQuery] int quantidade = 10)
     {
-        return Ok(_context.Filmes.Skip(pular).Take(quantidade));
+        var consulta = _context.Filmes.Skip(pular).Take(quantidade);
+        var filmes = _mapper.Map<List<ReadFilmeDto>>(consulta);
+        return Ok(filmes);
     }
     
     [HttpGet("{id}")]
@@ -40,7 +42,8 @@ public class FilmeController : ControllerBase
     {
         var filme = _context.Filmes.FirstOrDefault(filme =>  filme.Id == id);
         if(filme is null) return  NotFound();
-        return Ok(filme);
+        
+        return Ok(_mapper.Map<ReadFilmeDto>(filme));
     }
 
     [HttpPut("{id}")]
@@ -49,7 +52,6 @@ public class FilmeController : ControllerBase
         var filme = _context.Filmes.FirstOrDefault(f => f.Id == id);
         if(filme is null) return NotFound();
         filme = _mapper.Map (filmeDto, filme);        
-        // _context.Filmes.Update(filme);
         _context.SaveChanges();
         return NoContent();
     }
