@@ -6,9 +6,10 @@ Um sistema para gerenciamento de locadora de filmes.
 
 ```
 Locadora/
-├── Gescol.API/ # Projeto principal da API
+├── Locadora.API/ # Projeto principal da API
 │ ├── Controllers/ # Controladores API
 │ ├── Data/ # Banco de dadoos
+│ │ └── Dto # Pasta para salvar os dtos
 │ ├── Migrations/ # Migrações do Entity
 │ ├── Models/ # Entidades
 │ ├── Profile/ # Arquivos de configuração do Automapper
