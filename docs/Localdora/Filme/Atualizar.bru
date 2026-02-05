@@ -1,11 +1,11 @@
 meta {
-  name: Cadastrar
+  name: Atualizar
   type: http
-  seq: 2
+  seq: 4
 }
 
-post {
-  url: {{baseURL}}/filmes
+put {
+  url: {{baseURL}}/filmes/4
   body: json
   auth: inherit
 }
@@ -13,9 +13,9 @@ post {
 body:json {
   {
       "Titulo" : "Avatar",
-      "Genero" : "Comédia",
-      "Duracao" : 96,
-      "Diretor" :  "Robert Zemeckis"
+      "Genero" : "Ação",
+      "Duracao" : 120,
+      "Diretor" :  "James Cameron"
   }
 }
 

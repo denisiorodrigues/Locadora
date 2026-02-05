@@ -41,4 +41,15 @@ public class FilmeController : ControllerBase
         if(filme is null) return  NotFound();
         return Ok(filme);
     }
+
+    [HttpPut("{id}")]
+    public IActionResult AtualizarFilme(int id, [FromBody] UpdateFilmeDto filmeDto)
+    {
+        var filme = _context.Filmes.FirstOrDefault(f => f.Id == id);
+        if(filme is null) return NotFound();
+        filme = _mapper.Map (filmeDto, filme);        
+        // _context.Filmes.Update(filme);
+        _context.SaveChanges();
+        return NoContent();
+    }
 }
