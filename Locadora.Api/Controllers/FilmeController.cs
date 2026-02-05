@@ -2,6 +2,7 @@
 using Locadora.Api.Data;
 using Locadora.Api.Data.Dto;
 using Locadora.Api.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Locadora.Api.Controllers;
@@ -53,8 +54,27 @@ public class FilmeController : ControllerBase
         return NoContent();
     }
     
+    [HttpPatch("{id}")]
+    public IActionResult AtualizarFilmeParcial(int id, JsonPatchDocument<UpdateFilmeDto> path)
+    {
+        var filme = _context.Filmes.FirstOrDefault(f => f.Id == id);
+        if(filme is null) return NotFound();
+        
+        var filmeParaAtualziar = _mapper.Map<UpdateFilmeDto>(filme);
+        
+        path.ApplyTo(filmeParaAtualziar, ModelState);
+        if (!TryValidateModel(filmeParaAtualziar))
+        {
+            return ValidationProblem(ModelState);
+        }
+        
+        _mapper.Map(filmeParaAtualziar, filme);
+        _context.SaveChanges();
+        return NoContent();
+    }
+    
     [HttpDelete("{id}")]
-    public IActionResult AtualizarFilme(int id)
+    public IActionResult DeletarFilme(int id)
     {
         var filme = _context.Filmes.FirstOrDefault(f => f.Id == id);
         if(filme is null) return NotFound();
