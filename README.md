@@ -23,6 +23,7 @@ Locadora/
 - Entityframework
 - Pomelo
 - Automapper
+- Identity
 
 
 ## Banco de dados
