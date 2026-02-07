@@ -2,6 +2,7 @@ using System.Reflection;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Locadora.Api.Data;
+using Locadora.Api.Models;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,9 @@ builder.Services.AddDbContext<LocadoraContext>(options =>
         connectionString,
         new MySqlServerVersion(new Version(8, 0, 44)) // Ajuste para sua versão
     ));
+
+builder.Services.AddIdentityApiEndpoints<PessoaComAcesso>()
+                .AddEntityFrameworkStores<LocadoraContext>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
@@ -46,5 +50,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGroup("auth").MapIdentityApi<PessoaComAcesso>().WithTags("Autorização");
 
 app.Run();

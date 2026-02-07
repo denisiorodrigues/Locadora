@@ -1,0 +1,23 @@
+meta {
+  name: Registrar
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://localhost:44330/auth/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "denisio@email.com",
+    "password": "Senha@123"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
