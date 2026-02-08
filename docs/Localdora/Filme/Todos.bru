@@ -7,7 +7,15 @@ meta {
 get {
   url: {{baseURL}}/filmes
   body: none
-  auth: inherit
+  auth: bearer
+}
+
+headers {
+  Authorization: {{tokenType}} {{token}}
+}
+
+auth:bearer {
+  token: 
 }
 
 settings {

@@ -2,11 +2,13 @@
 using Locadora.Api.Data;
 using Locadora.Api.Data.Dto;
 using Locadora.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Locadora.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/filmes")]
 public class FilmeController : ControllerBase

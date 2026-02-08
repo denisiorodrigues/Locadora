@@ -24,6 +24,8 @@ builder.Services.AddDbContext<LocadoraContext>(options =>
 builder.Services.AddIdentityApiEndpoints<PessoaComAcesso>()
                 .AddEntityFrameworkStores<LocadoraContext>();
 
+builder.Services.AddAuthorization();
+
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
