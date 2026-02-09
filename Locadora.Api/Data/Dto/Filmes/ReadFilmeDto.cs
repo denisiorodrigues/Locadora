@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Locadora.Api.Data.Dto;
+﻿namespace Locadora.Api.Data.Dto.Filmes;
 
 public class ReadFilmeDto
 {

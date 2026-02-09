@@ -1,4 +1,5 @@
 ﻿using Locadora.Api.Data.Dto;
+using Locadora.Api.Data.Dto.Filmes;
 using Locadora.Api.Models;
 
 namespace Locadora.Api.Profile;

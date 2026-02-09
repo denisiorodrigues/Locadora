@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Locadora.Api.Data;
-using Locadora.Api.Data.Dto;
+using Locadora.Api.Data.Dto.Filmes;
 using Locadora.Api.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
