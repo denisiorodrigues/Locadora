@@ -8,8 +8,8 @@ public class CinemaProfile : AutoMapper.Profile
 {
     public CinemaProfile()
     {
-        CreateMap<CreateFilmeDto, Cinema>();
-        CreateMap<UpdateCinemaDto, Cinema>();
+        CreateMap<CreateCinemaDto, Cinema>();
+        CreateMap<UpdateCinemaDto, Cinema>().ReverseMap();
         CreateMap<Cinema, ReadCinemaDto>();
     }
 }

@@ -12,9 +12,9 @@ namespace Locadora.Api.Controllers;
 public class EnderecoController : ControllerBase
 {
     private readonly LocadoraContext _context;
-    private readonly Mapper _mapper;
+    private readonly IMapper _mapper;
     
-    public EnderecoController(LocadoraContext context, Mapper mapper)
+    public EnderecoController(LocadoraContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

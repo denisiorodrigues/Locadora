@@ -11,10 +11,10 @@ namespace Locadora.Api.Controllers;
 [Route("api/cinemas")]
 public class CinemaController : ControllerBase
 {
-    private readonly Mapper _mapper;
+    private readonly IMapper _mapper;
     private readonly LocadoraContext _context;
     
-    public CinemaController(Mapper mapper, LocadoraContext context)
+    public CinemaController(IMapper mapper, LocadoraContext context)
     {
         _mapper = mapper;
         _context = context;
@@ -92,8 +92,8 @@ public class CinemaController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [HttpPut("{id}")]
-    public IActionResult Atualizar([FromQuery] int id, [FromBody] UpdateCinemaDto updateCinemaDto)
+    [HttpPut("{id:int}")]
+    public IActionResult Atualizar(int id, [FromBody] UpdateCinemaDto updateCinemaDto)
     {
         if (!ModelState.IsValid)
         {
@@ -120,7 +120,7 @@ public class CinemaController : ControllerBase
     /// <param name="path">Parth de dados que precisa sem atualizado</param>
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [HttpPatch("{id}")]
+    [HttpPatch("{id:int}")]
     public IActionResult AtualizacaoParcial(int id, JsonPatchDocument<UpdateCinemaDto> path)
     {
         var cinema = _context.Cinemas.FirstOrDefault(c => c.Id == id);
