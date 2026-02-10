@@ -1,0 +1,22 @@
+meta {
+  name: Cadastrar
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseURL}}/cinemas
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "Nome" : "Centerplex"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

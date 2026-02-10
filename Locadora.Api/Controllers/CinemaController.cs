@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Locadora.Api.Controllers;
 
 [ApiController]
-[Route("api/cinema")]
+[Route("api/cinemas")]
 public class CinemaController : ControllerBase
 {
     private readonly Mapper _mapper;
