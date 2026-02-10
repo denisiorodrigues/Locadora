@@ -10,4 +10,5 @@ public class Endereco
     [Required(ErrorMessage = "O campo logradouro é obrigatório")]
     public string Logradouro { get; set; }
     public int? Numero { get; set; }
+    public virtual Cinema Cinema { get; set; }
 }
