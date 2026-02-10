@@ -45,7 +45,7 @@ public class FilmeController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult ObterFilmes([FromQuery] int pular = 0, [FromQuery] int quantidade = 10)
     {
-        var consulta = _context.Filmes.Skip(pular).Take(quantidade);
+        var consulta = _context.Filmes.Skip(pular).Take(quantidade).ToList();
         var filmes = _mapper.Map<List<ReadFilmeDto>>(consulta);
         return Ok(filmes);
     }

@@ -107,7 +107,7 @@ public class CinemaController : ControllerBase
             return NotFound();
         }
         
-        _mapper.Map(cinema, updateCinemaDto);
+        _mapper.Map(updateCinemaDto, cinema);
         _context.SaveChanges();
         
         return NoContent();
@@ -118,7 +118,6 @@ public class CinemaController : ControllerBase
     /// </summary>
     /// <param name="id">Identificador do cinema</param>
     /// <param name="path">Parth de dados que precisa sem atualizado</param>
-    /// <returns></returns>
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [HttpPatch("{id}")]
