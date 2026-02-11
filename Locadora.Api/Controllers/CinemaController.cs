@@ -30,7 +30,8 @@ public class CinemaController : ControllerBase
     [HttpGet]
     public IActionResult Listar([FromQuery] int pular = 0, int quantidade = 10)
     {
-        var cinemas = _context.Cinemas.Skip(pular).Take(quantidade).ToList();
+        var consulta = _context.Cinemas.Skip(pular).Take(quantidade).ToList();
+        var cinemas = _mapper.Map<List<ReadCinemaDto>>(consulta);
         return Ok(cinemas);
     }
     
