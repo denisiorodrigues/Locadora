@@ -1,9 +1,10 @@
-﻿using Locadora.Api.Data.Dto.Endereco;
+﻿using AutoMapper;
+using Locadora.Api.Data.Dto.Endereco;
 using Locadora.Api.Models;
 
-namespace Locadora.Api.Profile;
+namespace Locadora.Api.Profiles;
 
-public class EnderecoProfile : AutoMapper.Profile
+public class EnderecoProfile : Profile
 {
     public EnderecoProfile()
     {

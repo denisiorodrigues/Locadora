@@ -1,10 +1,10 @@
-﻿using Locadora.Api.Data.Dto.Cinema;
-using Locadora.Api.Data.Dto.Filmes;
+﻿using AutoMapper;
+using Locadora.Api.Data.Dto.Cinema;
 using Locadora.Api.Models;
 
-namespace Locadora.Api.Profile;
+namespace Locadora.Api.Profiles;
 
-public class CinemaProfile : AutoMapper.Profile
+public class CinemaProfile : Profile
 {
     public CinemaProfile()
     {
