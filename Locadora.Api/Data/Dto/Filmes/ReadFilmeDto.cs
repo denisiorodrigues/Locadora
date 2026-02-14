@@ -1,4 +1,6 @@
-﻿namespace Locadora.Api.Data.Dto.Filmes;
+﻿using Locadora.Api.Data.Dto.Sessao;
+
+namespace Locadora.Api.Data.Dto.Filmes;
 
 public class ReadFilmeDto
 {
@@ -11,4 +13,6 @@ public class ReadFilmeDto
     public string Diretor { get; set; }
 
     public DateTime DataUltimaConsulta { get; set; } = DateTime.Now;
+
+    public ICollection<ReadSessaoDto> Sessoes { get; set; }
 }

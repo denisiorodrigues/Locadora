@@ -21,5 +21,4 @@ public class Filme
 
     [MaxLength(100, ErrorMessage = "O nome do diretor deve ter no máximo 100 caracteres.")]
     public string Diretor { get; set; }
-    public virtual ICollection<Sessao> Sessao { get; set; }
 }

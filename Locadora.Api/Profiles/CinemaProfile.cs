@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Runtime.CompilerServices;
+using AutoMapper;
 using Locadora.Api.Data.Dto.Cinema;
 using Locadora.Api.Models;
 
@@ -12,6 +13,9 @@ public class CinemaProfile : Profile
         CreateMap<UpdateCinemaDto, Cinema>().ReverseMap();
         CreateMap<Cinema, ReadCinemaDto>()
             .ForMember(cinemaDto => cinemaDto.Endereco, 
-                opt => opt.MapFrom(cinema => cinema.Endereco));
+                opt => opt.MapFrom(cinema => cinema.Endereco))
+            .ForMember(cinemaDto => cinemaDto.Sessoes, opt => opt.MapFrom(cinema => cinema.Sessoes));
+        
+        
     }
 }
