@@ -1,5 +1,4 @@
 using System.Reflection;
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Locadora.Api.Data;
 using Microsoft.OpenApi.Models;
