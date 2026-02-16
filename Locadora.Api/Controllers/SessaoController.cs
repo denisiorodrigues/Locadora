@@ -34,7 +34,7 @@ public class SessaoController : ControllerBase
         var sessao = _mapper.Map<Sessao>(createSessaoDto);
         _context.Sessoes.Add(sessao);
         _context.SaveChanges();
-        return CreatedAtAction(nameof(ObterPorId), new { id = sessao.Id }, sessao);
+        return CreatedAtAction(nameof(ObterPorId), new { filmeId = sessao.FilmeId, cinemaId = sessao.CinemaId }, sessao);
     }
 
     /// <summary>
@@ -44,10 +44,10 @@ public class SessaoController : ControllerBase
     /// <returns>Objeto de sessão somente leitura</returns>
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [HttpGet("{id:int}")]
-    public IActionResult ObterPorId(int id)
+    [HttpGet("filme/{filmeId:int}/cinema/{cinemaId:int}")]
+    public IActionResult ObterPorId(int filmeId, int cinemaId)
     {
-        var consulta = _context.Sessoes.FirstOrDefault(s => s.Id == id);
+        var consulta = _context.Sessoes.FirstOrDefault(s => s.FilmeId == filmeId && s.CinemaId == cinemaId);
         if(consulta is null) return NotFound();
         var sessao = _mapper.Map<ReadSessaoDto>(consulta);
         return Ok(sessao);
