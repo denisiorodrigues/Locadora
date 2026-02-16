@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Locadora.Api.Data;
-using Locadora.Api.Data.Dto;
+using Locadora.Api.Data.Dto.Filmes;
 using Locadora.Api.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -40,12 +40,32 @@ public class FilmeController : ControllerBase
     /// </summary>
     /// <param name="pular">Informa a quantidade para pular a quantidade de filmes. Serve para paginação.</param>
     /// <param name="quantidade">Informa a quantidade de itens na listagem. Serve para paginação.</param>
+    /// <param name="nomeCinema">Filtrar filmes pelo nome do cinema.</param>
     /// <returns code="200">Uma lista de filmes</returns>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult ObterFilmes([FromQuery] int pular = 0, [FromQuery] int quantidade = 10)
+    public IActionResult ObterFilmes([FromQuery] int pular = 0,
+                                     [FromQuery] int quantidade = 10,
+                                     [FromQuery] string? nomeCinema = null)
     {
-        var consulta = _context.Filmes.Skip(pular).Take(quantidade);
+        List<Filme> consulta;
+        if (nomeCinema is null)
+        {
+            consulta = _context.Filmes
+                                .Skip(pular)
+                                .Take(quantidade)
+                                .ToList();
+        }
+        else
+        {
+            consulta = _context.Filmes
+                                .Skip(pular)
+                                .Take(quantidade)
+                                .Where(filme => 
+                                    filme.Sessoes
+                                        .Any(sessao => sessao.Cinema.Nome == nomeCinema))
+                                .ToList();
+        }
         var filmes = _mapper.Map<List<ReadFilmeDto>>(consulta);
         return Ok(filmes);
     }

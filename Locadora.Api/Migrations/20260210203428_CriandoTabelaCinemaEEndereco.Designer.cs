@@ -4,6 +4,7 @@ using Locadora.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,16 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Locadora.Api.Migrations
 {
     [DbContext(typeof(LocadoraContext))]
-    partial class LocadoraContextModelSnapshot : ModelSnapshot
+    [Migration("20260210203428_CriandoTabelaCinemaEEndereco")]
+    partial class CriandoTabelaCinemaEEndereco
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.23")
-                .HasAnnotation("Proxies:ChangeTracking", false)
-                .HasAnnotation("Proxies:CheckEquality", false)
-                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
@@ -98,65 +98,21 @@ namespace Locadora.Api.Migrations
                     b.ToTable("Filmes");
                 });
 
-            modelBuilder.Entity("Locadora.Api.Models.Sessao", b =>
-                {
-                    b.Property<int?>("FilmeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CinemaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FilmeId", "CinemaId");
-
-                    b.HasIndex("CinemaId");
-
-                    b.ToTable("Sessoes");
-                });
-
             modelBuilder.Entity("Locadora.Api.Models.Cinema", b =>
                 {
                     b.HasOne("Locadora.Api.Models.Endereco", "Endereco")
                         .WithOne("Cinema")
                         .HasForeignKey("Locadora.Api.Models.Cinema", "EnderecoId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Endereco");
-                });
-
-            modelBuilder.Entity("Locadora.Api.Models.Sessao", b =>
-                {
-                    b.HasOne("Locadora.Api.Models.Cinema", "Cinema")
-                        .WithMany("Sessoes")
-                        .HasForeignKey("CinemaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Locadora.Api.Models.Filme", "Filme")
-                        .WithMany("Sessoes")
-                        .HasForeignKey("FilmeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cinema");
-
-                    b.Navigation("Filme");
-                });
-
-            modelBuilder.Entity("Locadora.Api.Models.Cinema", b =>
-                {
-                    b.Navigation("Sessoes");
                 });
 
             modelBuilder.Entity("Locadora.Api.Models.Endereco", b =>
                 {
                     b.Navigation("Cinema")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Locadora.Api.Models.Filme", b =>
-                {
-                    b.Navigation("Sessoes");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,13 +1,17 @@
 meta {
-  name: Todos
+  name: Cinemas
   type: http
   seq: 1
 }
 
 get {
-  url: {{baseURL}}/filmes
+  url: {{baseURL}}/cinemas
   body: none
   auth: inherit
+}
+
+params:query {
+  ~enderecoId: 2
 }
 
 settings {
