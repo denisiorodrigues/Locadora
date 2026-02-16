@@ -4,6 +4,7 @@ using Locadora.Api.Data.Dto.Cinema;
 using Locadora.Api.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Locadora.Api.Controllers;
 
@@ -25,12 +26,25 @@ public class CinemaController : ControllerBase
     /// </summary>
     /// <param name="pular">Quantidade que tem que pular</param>
     /// <param name="quantidade">Quantidade que tem que trazer</param>
+    /// <param name="enderecoId">Ientificador de um endereço</param>
     /// <returns>Lista de cinemas</returns>
     [ProducesResponseType(StatusCodes.Status200OK)]
     [HttpGet]
-    public IActionResult Listar([FromQuery] int pular = 0, int quantidade = 10)
+    public IActionResult Listar([FromQuery] int pular = 0, int quantidade = 10, int? enderecoId = null)
     {
-        var consulta = _context.Cinemas.Skip(pular).Take(quantidade).ToList();
+        List<Cinema> consulta;
+
+        if (enderecoId is null)
+        {
+            consulta = _context.Cinemas.Skip(pular).Take(quantidade).ToList();
+        }
+        else
+        {
+            consulta = _context.Cinemas.FromSqlRaw(
+                $"SELECT Id, Nome, EnderecoId FROM Cinemas WHERE EnderecoId = {enderecoId}")
+                .ToList();
+        }
+
         var cinemas = _mapper.Map<List<ReadCinemaDto>>(consulta);
         return Ok(cinemas);
     }
