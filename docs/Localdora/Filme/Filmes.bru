@@ -5,9 +5,13 @@ meta {
 }
 
 get {
-  url: {{baseURL}}/filmes
+  url: {{baseURL}}/filmes?nomeCinema=Kinoplex
   body: none
   auth: inherit
+}
+
+params:query {
+  nomeCinema: Kinoplex
 }
 
 settings {
