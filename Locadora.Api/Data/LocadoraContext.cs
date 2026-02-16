@@ -28,5 +28,10 @@ public class LocadoraContext : DbContext
             .HasOne(s => s.Filme)
             .WithMany(c => c.Sessoes)
             .HasForeignKey(f => f.FilmeId);
+
+        modelBuilder.Entity<Endereco>()
+            .HasOne(endereco => endereco.Cinema)
+            .WithOne(cinema => cinema.Endereco)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
