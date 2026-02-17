@@ -1,0 +1,26 @@
+meta {
+  name: Atualizar parcial
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{baseURL}}/cinemas/4
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {
+      "op" : "replace",
+      "path" : "/nome",
+      "value" : "Kinoplex"
+    }
+  ]
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

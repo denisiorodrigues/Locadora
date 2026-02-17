@@ -5,17 +5,15 @@ meta {
 }
 
 post {
-  url: {{baseURL}}/filmes
+  url: {{baseURL}}/sessoes
   body: json
   auth: inherit
 }
 
 body:json {
   {
-      "titulo": "Parasita",
-      "genero": "Suspense/Drama",
-      "duracao": 132,
-      "diretor": "Bong Joon-ho"
+    "FilmeId" : 6,
+    "CinemaId": 1
   }
 }
 

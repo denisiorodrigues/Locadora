@@ -1,0 +1,20 @@
+meta {
+  name: Filmes
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseURL}}/filmes?nomeCinema=Kinoplex
+  body: none
+  auth: inherit
+}
+
+params:query {
+  nomeCinema: Kinoplex
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

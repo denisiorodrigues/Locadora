@@ -1,5 +1,4 @@
 using System.Reflection;
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Locadora.Api.Data;
 using Locadora.Api.Models;
@@ -16,7 +15,9 @@ if(string.IsNullOrEmpty(connectionString))
     throw new ArgumentNullException(nameof(connectionString) + " String de conexão não encontrada --- " );
 
 builder.Services.AddDbContext<LocadoraContext>(options =>
-    options.UseMySql(
+    options
+        .UseLazyLoadingProxies()
+        .UseMySql(
         connectionString,
         new MySqlServerVersion(new Version(8, 0, 44)) // Ajuste para sua versão
     ));
